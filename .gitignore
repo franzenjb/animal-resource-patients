@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw source photos (large) + OCR scratch
+_source/
+
+# playwright
+/test-results/
+/playwright-report/

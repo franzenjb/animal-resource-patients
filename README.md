@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Patient Animal Resource
 
-## Getting Started
+A web tool that helps **hospitalized patients arrange care for the animals they leave at
+home**. It digitizes a reference binder used at intake: a step-by-step workflow plus a
+searchable directory of Maine kennels, pet food pantries, humane societies / Animal Control
+Officers, and large-animal help — and a plain-language copy of the relevant Maine
+animal-welfare statute.
 
-First, run the development server:
+Built for **patients, families, and intake staff** — mobile-first, clean, no internal
+chrome.
+
+## Pages
+
+| Route | Purpose |
+|-------|---------|
+| `/` | Mission + "How It Works" (3 steps) + resource categories |
+| `/intake` | Interactive intake checklist (Steps 1–3), printable |
+| `/resources` | Filterable directory (category + Maine county + search) |
+| `/forms` | Consent-to-contact and relinquishment forms (signable versions to come) |
+| `/legal` | Maine Title 17, Ch. 42 (Possession of Animals) — reference summaries |
+
+## Data
+
+Directory content lives in `src/data/resources.ts`. Entries transcribed from the source
+binder are flagged `verified: true`. The full Maine import (DACF Animal Control Officers,
+all-county pet food pantries, LocalKennels.net) is a follow-on — **do not invent contact
+details; import them.**
+
+Source documents and OCR transcription: `docs/source-ocr.md`. Original photos live under
+`_source/` (git-ignored, large raw files).
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
+npm run build        # production build
+npx playwright test  # smoke + dark-mode contrast tests
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Stack: Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · TypeScript · deployed on Vercel.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## To do (next pass)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Import the full Maine Animal Control Officer directory (DACF).
+- Import all-county pet food pantries and the 37 Maine kennels (LocalKennels.net).
+- Attach downloadable/signable consent forms on `/forms`.
+- Optionally pull authoritative statute text from legislature.maine.gov.
