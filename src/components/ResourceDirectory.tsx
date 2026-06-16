@@ -48,17 +48,17 @@ export function ResourceDirectory({
   return (
     <div>
       {/* Filters */}
-      <div className="rounded-xl border border-edge bg-surface p-4">
+      <div className="rounded-3xl border border-edge bg-surface p-5 shadow-[var(--shadow)]">
         <div className="flex flex-wrap gap-2">
           {CATS.map((c) => (
             <button
               key={c.value}
               type="button"
               onClick={() => setCategory(c.value)}
-              className={`rounded-full px-3.5 py-1.5 text-sm font-semibold transition-colors ${
+              className={`rounded-full px-4 py-2 text-sm font-bold transition-colors ${
                 category === c.value
-                  ? "bg-accent text-white"
-                  : "border border-edge bg-background text-ink hover:border-accent hover:text-accent"
+                  ? "bg-accent text-on-accent"
+                  : "bg-cream text-ink hover:bg-peach"
               }`}
             >
               {c.label}
@@ -68,13 +68,13 @@ export function ResourceDirectory({
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <label className="block">
-            <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted">
+            <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-muted">
               Filter By County
             </span>
             <select
               value={county}
               onChange={(e) => setCounty(e.target.value)}
-              className="w-full rounded-lg border border-edge bg-surface px-3 py-2 text-sm text-ink-strong"
+              className="w-full rounded-xl border border-edge bg-surface px-3 py-2.5 text-sm font-semibold text-ink"
             >
               <option value="all">All Maine Counties</option>
               {MAINE_COUNTIES.map((c) => (
@@ -85,7 +85,7 @@ export function ResourceDirectory({
             </select>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-semibold uppercase tracking-wide text-muted">
+            <span className="mb-1 block text-xs font-bold uppercase tracking-wide text-muted">
               Search
             </span>
             <input
@@ -93,13 +93,13 @@ export function ResourceDirectory({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Town, organization, or keyword…"
-              className="w-full rounded-lg border border-edge bg-surface px-3 py-2 text-sm text-ink-strong"
+              className="w-full rounded-xl border border-edge bg-surface px-3 py-2.5 text-sm text-ink"
             />
           </label>
         </div>
       </div>
 
-      <p className="mt-4 text-sm text-muted">
+      <p className="mt-5 text-sm font-semibold text-muted">
         Showing {filtered.length}{" "}
         {filtered.length === 1 ? "resource" : "resources"}
       </p>
@@ -111,13 +111,13 @@ export function ResourceDirectory({
           ))}
         </div>
       ) : (
-        <div className="mt-4 rounded-xl border border-dashed border-edge bg-surface p-8 text-center">
-          <p className="font-serif text-lg font-bold text-ink-strong">
+        <div className="mt-4 rounded-3xl border border-dashed border-edge-strong bg-surface p-10 text-center">
+          <p className="font-display text-lg font-bold text-ink-deep">
             No Matches Yet
           </p>
           <p className="mt-2 text-sm text-muted">
-            The full Maine directory is still being imported. Try clearing the
-            filters, or check back as more resources are added.
+            Try clearing the filters, or check back as more Maine resources are
+            added.
           </p>
         </div>
       )}

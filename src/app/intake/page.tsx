@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 export default function IntakePage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-text">
         For Intake Staff
       </p>
-      <h1 className="mt-3 font-serif text-3xl font-bold text-ink-strong sm:text-4xl">
+      <h1 className="mt-3 font-display text-3xl font-bold text-ink-deep sm:text-4xl">
         Intake Workflow
       </h1>
       <p className="mt-3 text-ink">

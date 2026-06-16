@@ -13,20 +13,20 @@ export function SiteHeader() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-edge bg-surface/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-edge bg-cream/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
         <Link href="/" className="flex items-center gap-3 shrink-0">
           <span
             aria-hidden
-            className="grid h-9 w-9 place-items-center rounded-full bg-accent-soft text-accent text-lg"
+            className="grid h-10 w-10 place-items-center rounded-2xl bg-peach text-xl"
           >
             🐾
           </span>
           <span className="leading-tight">
-            <span className="block font-serif text-base font-bold text-ink-strong">
+            <span className="block font-display text-lg font-bold text-ink-deep">
               Patient Animal Resource
             </span>
-            <span className="block text-[11px] uppercase tracking-wide text-muted">
+            <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-muted">
               Care For Their Animals While They Heal
             </span>
           </span>
@@ -37,10 +37,10 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
+              className={`rounded-full px-3.5 py-2 text-sm font-bold transition-colors ${
                 isActive(item.href)
-                  ? "bg-accent-soft text-accent"
-                  : "text-ink hover:bg-accent-soft hover:text-accent"
+                  ? "bg-accent text-on-accent"
+                  : "text-ink hover:bg-peach"
               }`}
             >
               {item.label}
@@ -51,7 +51,7 @@ export function SiteHeader() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="rounded-md border border-edge px-3 py-2 text-sm font-semibold text-ink md:hidden"
+          className="rounded-full bg-peach px-4 py-2 text-sm font-bold text-ink md:hidden"
           aria-expanded={open}
           aria-label="Toggle menu"
         >
@@ -60,17 +60,17 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="border-t border-edge bg-surface md:hidden">
-          <div className="mx-auto flex max-w-6xl flex-col px-4 py-2 sm:px-6">
+        <nav className="border-t border-edge bg-cream md:hidden">
+          <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
             {NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={`rounded-md px-3 py-2 text-sm font-semibold ${
+                className={`rounded-2xl px-3.5 py-2.5 text-sm font-bold ${
                   isActive(item.href)
-                    ? "bg-accent-soft text-accent"
-                    : "text-ink hover:bg-accent-soft hover:text-accent"
+                    ? "bg-accent text-on-accent"
+                    : "text-ink hover:bg-peach"
                 }`}
               >
                 {item.label}

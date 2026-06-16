@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Libre_Baskerville, Source_Sans_3 } from "next/font/google";
+import { Fraunces, Mulish } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ContentIdeasModal } from "@/components/ContentIdeasModal";
 
-const display = Libre_Baskerville({
-  variable: "--font-display",
-  weight: ["400", "700"],
+const display = Fraunces({
+  variable: "--font-fraunces",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const body = Source_Sans_3({
-  variable: "--font-body",
-  weight: ["400", "600", "700"],
+const body = Mulish({
+  variable: "--font-mulish",
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
 });
@@ -35,10 +37,11 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-ink">
+      <body className="min-h-full flex flex-col bg-cream text-ink">
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <ContentIdeasModal />
       </body>
     </html>
   );

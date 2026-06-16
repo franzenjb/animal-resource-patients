@@ -1,0 +1,4 @@
+[
+  { "id": "aco-abbot", "name": "Abbot — Animal Control Officer", "category": "humane-aco", "county": "Piscataquis", "town": "Abbot", "phone": "(207) 717-5813", "notes": ["ACO: Gary Scavette", "Contracted shelter: Penobscot Valley Humane Society", "Town office: (207) 876-3340"], "verified": true },
+  { "id": "aco-acton", "name": "Acton — Animal Control Officer", "category": "humane-aco", "county": "York", "town": "Acton", "phone": "(207) 206-6065", "notes": ["ACO: Brandon Mee", "Contracted shelter: Animal Welfare Society", "Town office: (207) 636-3131 ext. 401"], "verified": true }
+]

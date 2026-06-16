@@ -36,10 +36,10 @@ const FORMS = [
 export default function FormsPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-accent">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-text">
         Paperwork
       </p>
-      <h1 className="mt-3 font-serif text-3xl font-bold text-ink-strong sm:text-4xl">
+      <h1 className="mt-3 font-display text-3xl font-bold text-ink-deep sm:text-4xl">
         Consent Forms
       </h1>
       <p className="mt-3 text-ink">
@@ -56,7 +56,7 @@ export default function FormsPage() {
             <p className="text-xs font-semibold uppercase tracking-wide text-muted">
               {f.when}
             </p>
-            <h2 className="mt-1 font-serif text-xl font-bold text-ink-strong">
+            <h2 className="mt-1 font-display text-xl font-bold text-ink-deep">
               {f.title}
             </h2>
             <p className="mt-2 text-sm text-ink">{f.purpose}</p>
@@ -67,7 +67,7 @@ export default function FormsPage() {
             <ul className="mt-2 space-y-1 text-sm text-ink">
               {f.captures.map((c, i) => (
                 <li key={i} className="flex gap-2">
-                  <span aria-hidden className="text-accent">
+                  <span aria-hidden className="text-accent-text">
                     •
                   </span>
                   <span>{c}</span>

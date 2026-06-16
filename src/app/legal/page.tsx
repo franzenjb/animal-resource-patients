@@ -14,23 +14,23 @@ export const metadata: Metadata = {
 export default function LegalPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-legal">
+      <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-text">
         For Reference
       </p>
-      <h1 className="mt-3 font-serif text-3xl font-bold text-ink-strong sm:text-4xl">
+      <h1 className="mt-3 font-display text-3xl font-bold text-ink-deep sm:text-4xl">
         Legal Reference
       </h1>
       <p className="mt-3 text-ink">{STATUTE_TITLE}.</p>
 
-      <div className="mt-6 rounded-xl border border-legal/30 bg-legal-soft px-4 py-3 text-sm text-ink">
-        <strong className="font-semibold text-legal">Reference Only:</strong>{" "}
+      <div className="mt-6 rounded-2xl border border-edge-strong bg-butter px-4 py-3 text-sm text-ink">
+        <strong className="font-bold text-ink-deep">Reference Only:</strong>{" "}
         these are plain-language summaries of the statute from the binder. For
         the authoritative, current text, see the{" "}
         <a
           href={STATUTE_SOURCE}
           target="_blank"
           rel="noreferrer"
-          className="font-semibold text-legal hover:underline"
+          className="font-bold text-accent-text hover:underline"
         >
           Maine Legislature
         </a>
@@ -43,7 +43,7 @@ export default function LegalPage() {
             key={s.id}
             className="rounded-xl border border-edge bg-surface p-6"
           >
-            <h2 className="font-serif text-lg font-bold text-ink-strong">
+            <h2 className="font-display text-lg font-bold text-ink-deep">
               {s.heading}
             </h2>
             <p className="mt-2 text-sm leading-relaxed text-ink">{s.body}</p>

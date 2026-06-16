@@ -1,63 +1,94 @@
 @import "tailwindcss";
 
-/* ---- Force a light theme: no half-dark, no invisible native controls ---- */
+/*
+  CONTRAST CONTRACT — two tiers only. Enforced by tests/contrast.spec.ts (WCAG AA).
+  • LIGHT surfaces (cream/white/peach/sage-soft/butter) -> dark INK text only.
+  • COLORED/DARK surfaces (accent, sage-deep, ink-deep) -> light text only (on-accent/on-dark).
+  Never dark text on a colored/dark background. Never same-tone text on same-tone surface.
+*/
 :root {
   color-scheme: light;
 
-  --background: #faf8f4;   /* warm cream */
+  /* light surfaces -> use --ink / --muted / --accent-text for text */
+  --cream: #fdf6ee;
   --surface: #ffffff;
-  --ink: #1f2937;          /* slate-800 */
-  --ink-strong: #111827;   /* slate-900 */
-  --muted: #6b7280;        /* slate-500 */
-  --border: #e7e2d8;       /* warm border */
+  --peach: #ffe7da;
+  --sage-soft: #e6efe5;
+  --butter: #fff0d4;
 
-  --accent: #0f766e;       /* teal-700 — "care" */
-  --accent-hover: #0d9488; /* teal-600 */
-  --accent-soft: #f0fdfa;  /* teal-50 */
-  --accent-ring: #99f6e4;  /* teal-200 */
+  /* text colors for use ON light surfaces */
+  --ink: #2a211d;        /* near-black warm brown */
+  --ink-deep: #1f1916;
+  --muted: #5f5046;      /* ≥4.5:1 on cream */
+  --accent-text: #a13f23;/* deep terracotta for links/labels on light, ≥4.5:1 */
+  --sage-text: #2f5135;  /* deep green for text on light, ≥4.5:1 */
 
-  --warm: #b45309;         /* amber-700 — highlights / large-animal */
-  --warm-soft: #fef3c7;    /* amber-100 */
+  /* colored / dark surfaces -> use --on-accent / --on-dark for text */
+  --accent: #b8482a;     /* terracotta fill */
+  --accent-hover: #a13f23;
+  --sage-deep: #355e3b;  /* hunter green fill */
+  --on-accent: #ffffff;
+  --on-dark: #fbf6ec;    /* warm cream text on dark */
 
-  --legal: #b91c1c;        /* red-700 — legal accent */
-  --legal-soft: #fef2f2;   /* red-50 */
+  /* soft tints + lines */
+  --edge: #ecdfd0;
+  --edge-strong: #e0cdb8;
+  --shadow: 0 10px 30px -12px rgba(60, 40, 30, 0.18);
+  --radius: 1.1rem;
 }
 html { color-scheme: light; }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-cream: var(--cream);
   --color-surface: var(--surface);
+  --color-peach: var(--peach);
+  --color-sage-soft: var(--sage-soft);
+  --color-butter: var(--butter);
+
   --color-ink: var(--ink);
-  --color-ink-strong: var(--ink-strong);
+  --color-ink-deep: var(--ink-deep);
   --color-muted: var(--muted);
-  --color-edge: var(--border);
+  --color-accent-text: var(--accent-text);
+  --color-sage-text: var(--sage-text);
+
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
-  --color-accent-soft: var(--accent-soft);
-  --color-accent-ring: var(--accent-ring);
-  --color-warm: var(--warm);
-  --color-warm-soft: var(--warm-soft);
-  --color-legal: var(--legal);
-  --color-legal-soft: var(--legal-soft);
+  --color-sage-deep: var(--sage-deep);
+  --color-on-accent: var(--on-accent);
+  --color-on-dark: var(--on-dark);
 
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-serif: var(--font-display), Georgia, "Times New Roman", serif;
+  --color-edge: var(--edge);
+  --color-edge-strong: var(--edge-strong);
+
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-mulish), ui-sans-serif, system-ui, sans-serif;
 }
 
-body {
-  background: var(--background);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
+/* Base rules go in @layer base so Tailwind UTILITIES (text-on-accent, text-on-dark, …)
+   always win — an unlayered element rule would otherwise beat layered utilities. */
+@layer base {
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--ink-deep);
+  }
+
+  a { color: inherit; }
+
+  /* native controls never inherit a light-on-light look (buttons set their own text color) */
+  input, select, textarea { color: var(--ink); }
+  input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
+
+  ::selection { background: var(--peach); color: var(--ink-deep); }
 }
 
-/* Native form controls never inherit a light-on-light look */
-input, select, textarea, button { color: var(--ink-strong); }
-input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
-
-h1, h2, h3, h4 { color: var(--ink-strong); }
-
-a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
 @media print {
   .no-print { display: none !important; }
