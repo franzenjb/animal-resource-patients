@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Photo } from "@/components/Photo";
 
 export const metadata: Metadata = {
   title: "Consent Forms",
@@ -35,19 +36,26 @@ const FORMS = [
 
 export default function FormsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-text">
-        Paperwork
-      </p>
-      <h1 className="mt-3 font-display text-3xl font-bold text-ink-deep sm:text-4xl">
-        Consent Forms
-      </h1>
-      <p className="mt-3 text-ink">
-        Two forms support the workflow. The signable versions will be attached
-        here for download and printing.
-      </p>
+    <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <section className="grid items-center gap-8 lg:grid-cols-[1fr_0.76fr]">
+        <div className="max-w-3xl">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-text">
+            Paperwork
+          </p>
+          <h1 className="mt-3 font-display text-3xl font-bold text-ink-deep sm:text-4xl">
+            Consent Forms
+          </h1>
+          <p className="mt-3 text-ink">
+            Two forms support the workflow. The signable versions will be
+            attached here for download and printing.
+          </p>
+        </div>
+        <div className="h-52 sm:h-64 lg:h-72">
+          <Photo slug="hero" />
+        </div>
+      </section>
 
-      <div className="mt-8 space-y-6">
+      <div className="mx-auto mt-8 max-w-3xl space-y-6">
         {FORMS.map((f) => (
           <section
             key={f.title}

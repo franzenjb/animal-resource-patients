@@ -1,12 +1,13 @@
 // Resource directory data.
 //
 // Kennels and food pantries are imported from JSON datasets compiled from public Maine
-// sources (LocalKennels.net; the State of Maine "Maine Pet Food Pantries" directory).
-// Humane / Animal Control Officer rows and the large-animal resource live below. Every
-// entry shown to users is real, public data — do NOT invent contact details; import them.
+// sources (LocalKennels.net; State of Maine, MFOA, and Midcoast Humane pantry lists).
+// Animal Control Officer rows are scraped from Maine DACF. Every entry shown to users
+// is real, public data - do NOT invent contact details; import them.
 
 import kennelsData from "./kennels.json";
 import pantriesData from "./pantries.json";
+import supplementalPantriesData from "./pantries-supplemental.json";
 import acoData from "./aco.json";
 
 export type ResourceCategory =
@@ -19,7 +20,8 @@ export type Resource = {
   id: string;
   name: string;
   category: ResourceCategory;
-  county?: string; // Maine county
+  state?: string; // expansion-ready; Maine launch data may omit this
+  county?: string; // Maine county for the launch directory
   town?: string;
   address?: string;
   phone?: string;
@@ -44,9 +46,9 @@ export const CATEGORY_META: Record<
     blurb: "Free pet food and supplies for caretakers in need.",
   },
   "humane-aco": {
-    label: "Humane Societies & Animal Control",
+    label: "Animal Control & Contracted Shelters",
     blurb:
-      "Shelters and Animal Control Officers who can transport or take in an animal.",
+      "Town Animal Control Officer contacts with contracted shelter details.",
   },
   "large-animal": {
     label: "Large Animals & Livestock",
@@ -74,7 +76,10 @@ export const MAINE_COUNTIES = [
 ] as const;
 
 const kennels = kennelsData as Resource[];
-const foodPantries = pantriesData as Resource[];
+const foodPantries = [
+  ...(pantriesData as Resource[]),
+  ...(supplementalPantriesData as Resource[]),
+];
 const humaneAco = acoData as Resource[];
 
 const largeAnimal: Resource[] = [

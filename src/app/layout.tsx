@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s · Patient Animal Resource",
   },
   description:
-    "Care resources for the animals of hospitalized patients — kennels, pet food pantries, humane societies, large-animal help, and the Maine animal-welfare statute, in one place.",
+    "Care resources for the animals of hospitalized patients - Maine kennels, pet food pantries, Animal Control contacts, contracted shelters, large-animal help, and legal reference in one place.",
 };
 
 export default function RootLayout({

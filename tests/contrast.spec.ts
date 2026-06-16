@@ -89,7 +89,7 @@ for (const path of PAGES) {
 test("content ideas modal passes contrast", async ({ page }) => {
   await page.goto("/");
   await page.waitForLoadState("networkidle");
-  await page.waitForTimeout(1200); // auto-opens once
+  await page.getByRole("button", { name: "Ideas to grow this site" }).click();
   await expect(page.getByText("15 Ways To Grow This Site")).toBeVisible();
   const failures = await page.evaluate(AUDIT);
   if (failures.length) {

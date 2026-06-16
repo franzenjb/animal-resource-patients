@@ -12,9 +12,9 @@ export function SiteFooter() {
             </p>
             <p className="mt-3 text-sm leading-relaxed text-on-dark/85">
               Connecting hospitalized patients with care for the animals they
-              leave at home — kennels, food, shelters, and large-animal help
-              across Maine. Because healing is easier when you know they&apos;re
-              safe.
+              leave at home - Maine resources today, built to grow into a
+              broader network. Because healing is easier when you know
+              they&apos;re safe.
             </p>
           </div>
           <nav className="grid grid-cols-2 gap-x-10 gap-y-1 text-sm">
@@ -30,8 +30,8 @@ export function SiteFooter() {
           </nav>
         </div>
         <p className="mt-10 border-t border-white/20 pt-6 text-xs leading-relaxed text-on-dark/75">
-          The resource directory is compiled from public Maine sources and is
-          being expanded — always confirm hours and eligibility directly with
+          The launch directory is compiled from public Maine sources and is
+          being expanded. Always confirm hours and eligibility directly with
           each organization. Legal text is a plain-language reference; consult
           the{" "}
           <a

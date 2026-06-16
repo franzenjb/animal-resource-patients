@@ -27,21 +27,23 @@ for (const p of PAGES) {
 
 test("resource directory filters by search", async ({ page }) => {
   await page.goto("/resources");
+  await page.waitForLoadState("networkidle");
+  await expect(page.getByText("Showing 593 resources")).toBeVisible();
   await page.getByPlaceholder(/Town, organization, or keyword/i).fill("Kommunity");
+  await expect(page.getByText("Showing 1 resource")).toBeVisible();
   await expect(page.getByText("Kommunity Kritters")).toBeVisible();
-  await expect(page.getByText("Bangor Humane Society")).toHaveCount(0);
 });
 
 test("resource directory has real Maine data", async ({ page }) => {
   await page.goto("/resources");
-  // kennels + pantries + aco + large-animal should be well over 50
-  await expect(page.getByText(/Showing \d{2,} resources/)).toBeVisible();
+  await expect(page.getByText("Showing 593 resources")).toBeVisible();
 });
 
 test("intake checklist tracks progress", async ({ page }) => {
   await page.goto("/intake");
+  await page.waitForLoadState("networkidle");
   await expect(page.getByText(/0\/\d+ steps checked/)).toBeVisible();
-  await page.getByRole("checkbox").first().check();
+  await page.getByLabel("Do you have an animal at home?").click();
   await expect(page.getByText(/1\/\d+ steps checked/)).toBeVisible();
 });
 

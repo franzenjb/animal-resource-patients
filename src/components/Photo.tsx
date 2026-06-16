@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { PHOTOS, PhotoTone } from "@/data/photos";
 
 // Placeholder gradients. Light tones carry ink text; the dark "accent" tone carries
@@ -25,7 +26,6 @@ export function Photo({
   };
 
   if (p.src) {
-    // eslint-disable-next-line @next/next/no-img-element
     return (
       <img
         src={p.src}

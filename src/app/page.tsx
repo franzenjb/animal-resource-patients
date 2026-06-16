@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CategoryGraphic } from "@/components/CategoryGraphic";
 import { Photo } from "@/components/Photo";
 import {
   CATEGORY_META,
@@ -34,12 +35,24 @@ const categoryOrder: ResourceCategory[] = [
   "large-animal",
 ];
 
-const photoFor: Record<ResourceCategory, string> = {
-  kennel: "waiting",
-  "food-pantry": "feeding",
-  "humane-aco": "volunteer",
-  "large-animal": "horse",
-};
+const WAYS_TO_HELP = [
+  {
+    title: "Volunteer",
+    body: "Help with outreach, transport, temporary care coordination, resource verification, or getting new partners listed.",
+  },
+  {
+    title: "Donate",
+    body: "Pet food, supplies, crates, and financial support can help keep animals safe while their people are getting care.",
+  },
+  {
+    title: "Suggest An Edit",
+    body: "Send missing resources, corrections, better contact details, or ideas for what families and staff need next.",
+  },
+  {
+    title: "Nonprofit Status",
+    body: "We are considering 501(c)(3) nonprofit status. Until that is confirmed, donations should not be assumed to be tax-deductible.",
+  },
+];
 
 export default function Home() {
   const count = (c: ResourceCategory) =>
@@ -81,10 +94,6 @@ export default function Home() {
           </div>
 
           <div className="relative">
-            <div
-              aria-hidden
-              className="absolute -right-6 -top-6 -z-10 h-40 w-40 rounded-full bg-peach blur-2xl"
-            />
             <div className="aspect-[4/5] w-full sm:aspect-[5/4] lg:aspect-[4/5]">
               <Photo slug="hero" className="shadow-[var(--shadow)]" />
             </div>
@@ -127,10 +136,16 @@ export default function Home() {
       {/* Find local help */}
       <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
         <div className="max-w-2xl">
+          <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-text">
+            Maine Launch, Built To Grow
+          </p>
           <h2 className="font-display text-3xl font-bold text-ink-deep">
             Find Local Help
           </h2>
-          <p className="mt-2 text-muted">Resources Organized By What You Need</p>
+          <p className="mt-2 text-muted">
+            Maine is the first directory. The structure is ready for more
+            states, partners, and resource types as the work expands.
+          </p>
         </div>
         <div className="mt-9 grid gap-5 sm:grid-cols-2">
           {categoryOrder.map((cat) => {
@@ -142,12 +157,7 @@ export default function Home() {
                 href={`/resources?category=${cat}`}
                 className="group flex items-center gap-5 rounded-3xl border border-edge bg-surface p-5 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow)]"
               >
-                <div className="h-24 w-24 shrink-0">
-                  <Photo
-                    slug={photoFor[cat]}
-                    rounded="rounded-2xl"
-                  />
-                </div>
+                <CategoryGraphic category={cat} className="h-24 w-24 shrink-0 p-4" />
                 <div>
                   <h3 className="font-display text-xl font-bold text-ink-deep group-hover:text-accent-text">
                     {meta.label}
@@ -162,6 +172,40 @@ export default function Home() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* Ways to help */}
+      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent-text">
+              Build This With Us
+            </p>
+            <h2 className="mt-3 font-display text-3xl font-bold text-ink-deep">
+              Volunteers, donations, and corrections are welcome.
+            </h2>
+            <p className="mt-3 text-ink">
+              This resource gets stronger when local people help keep it
+              current. If you know a shelter, pantry, kennel, transport option,
+              or animal-care partner that should be listed, send it in.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {WAYS_TO_HELP.map((item) => (
+              <article
+                key={item.title}
+                className="rounded-2xl border border-edge bg-surface p-5"
+              >
+                <h3 className="font-display text-lg font-bold text-ink-deep">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink">
+                  {item.body}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

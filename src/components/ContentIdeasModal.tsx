@@ -108,10 +108,12 @@ export function ContentIdeasModal() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="no-print fixed bottom-5 right-5 z-30 flex items-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-bold text-on-accent shadow-lg transition-transform hover:scale-105"
+        className="no-print fixed bottom-5 right-5 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-accent text-sm font-bold text-on-accent shadow-lg transition-transform hover:scale-105 sm:h-auto sm:w-auto sm:gap-2 sm:px-4 sm:py-3"
         aria-haspopup="dialog"
+        aria-label="Ideas to grow this site"
       >
-        <span aria-hidden>💡</span> Ideas To Grow This Site
+        <span aria-hidden>💡</span>
+        <span className="hidden sm:inline">Ideas To Grow This Site</span>
       </button>
 
       {open && (

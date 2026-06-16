@@ -1,4 +1,5 @@
 import { CATEGORY_META, Resource, ResourceCategory } from "@/data/resources";
+import { CategoryGraphic } from "@/components/CategoryGraphic";
 
 // Category badges — all on LIGHT chips with dark/ink text (contrast contract).
 const BADGE: Record<ResourceCategory, string> = {
@@ -8,8 +9,21 @@ const BADGE: Record<ResourceCategory, string> = {
   "large-animal": "bg-peach text-accent-text",
 };
 
+const ACCENT: Record<ResourceCategory, string> = {
+  kennel: "bg-accent",
+  "food-pantry": "bg-sage-deep",
+  "humane-aco": "bg-butter",
+  "large-animal": "bg-peach",
+};
+
 function telHref(phone: string) {
   return `tel:${phone.replace(/[^0-9+]/g, "")}`;
+}
+
+function directionsHref(address: string) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+    address,
+  )}`;
 }
 
 export function ResourceCard({ r }: { r: Resource }) {
@@ -19,35 +33,57 @@ export function ResourceCard({ r }: { r: Resource }) {
     .join(" · ");
 
   return (
-    <article className="flex flex-col rounded-3xl border border-edge bg-surface p-6 shadow-[var(--shadow)]">
+    <article className="relative flex flex-col overflow-hidden rounded-3xl border border-edge bg-surface p-6 shadow-[var(--shadow)]">
+      <span
+        aria-hidden
+        className={`absolute inset-x-0 top-0 h-1.5 ${ACCENT[r.category]}`}
+      />
       <div className="flex items-start justify-between gap-3">
-        <span
-          className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide ${
-            BADGE[r.category]
-          }`}
-        >
-          {meta.label}
-        </span>
+        <div className="flex min-w-0 items-start gap-3">
+          <CategoryGraphic
+            category={r.category}
+            className="h-14 w-14 shrink-0 p-2.5"
+          />
+          <div className="min-w-0">
+            <span
+              className={`inline-block rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide ${
+                BADGE[r.category]
+              }`}
+            >
+              {meta.label}
+            </span>
+            <h3 className="mt-3 font-display text-lg font-bold leading-snug text-ink-deep">
+              {r.name}
+            </h3>
+            {place && (
+              <p className="mt-1 text-sm font-semibold text-muted">{place}</p>
+            )}
+          </div>
+        </div>
         {r.verified && (
           <span
-            title="Transcribed from the source binder"
-            className="rounded-full bg-sage-soft px-2.5 py-1 text-[11px] font-bold text-sage-text"
+            title="Verified against public source material"
+            className="shrink-0 rounded-full bg-sage-soft px-2.5 py-1 text-[11px] font-bold text-sage-text"
           >
             ✓ Verified
           </span>
         )}
       </div>
 
-      <h3 className="mt-4 font-display text-lg font-bold leading-snug text-ink-deep">
-        {r.name}
-      </h3>
-      {place && <p className="mt-1 text-sm font-semibold text-muted">{place}</p>}
-
       <dl className="mt-4 space-y-2 text-sm text-ink">
         {r.address && (
           <div className="flex gap-2">
             <dt className="shrink-0 font-bold text-muted">Address</dt>
-            <dd>{r.address}</dd>
+            <dd>
+              <a
+                href={directionsHref(r.address)}
+                target="_blank"
+                rel="noreferrer"
+                className="font-semibold text-ink underline-offset-2 hover:text-accent-text hover:underline"
+              >
+                {r.address}
+              </a>
+            </dd>
           </div>
         )}
         {r.phone && (
@@ -109,16 +145,36 @@ export function ResourceCard({ r }: { r: Resource }) {
         </ul>
       )}
 
-      {r.website && (
-        <a
-          href={r.website}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-5 inline-block text-sm font-bold text-accent-text underline-offset-2 hover:underline"
-        >
-          Visit Website →
-        </a>
-      )}
+      <div className="mt-5 flex flex-wrap gap-2">
+        {r.address && (
+          <a
+            href={directionsHref(r.address)}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full bg-accent px-4 py-2 text-sm font-bold text-on-accent hover:bg-accent-hover"
+          >
+            Directions
+          </a>
+        )}
+        {r.phone && (
+          <a
+            href={telHref(r.phone)}
+            className="rounded-full border border-edge-strong bg-surface px-4 py-2 text-sm font-bold text-ink hover:border-accent hover:text-accent-text"
+          >
+            Call
+          </a>
+        )}
+        {r.website && (
+          <a
+            href={r.website}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-edge-strong bg-surface px-4 py-2 text-sm font-bold text-ink hover:border-accent hover:text-accent-text"
+          >
+            Website
+          </a>
+        )}
+      </div>
     </article>
   );
 }

@@ -62,7 +62,7 @@ const STEPS: Step[] = [
     ],
     link: {
       href: "/resources?category=humane-aco",
-      label: "Open Humane Societies & ACOs",
+      label: "Open Animal Control Contacts",
     },
   },
   {
