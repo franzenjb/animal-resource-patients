@@ -4,7 +4,7 @@ import { test, expect } from "@playwright/test";
 // WCAG AA: >=4.5:1 normal text, >=3:1 large text (>=24px, or >=18.66px bold). Fails the run
 // on ANY violation. This is the durable guard against black-on-dark-green and friends.
 
-const PAGES = ["/", "/intake", "/resources", "/forms", "/legal"];
+const PAGES = ["/", "/intake", "/resources", "/forms", "/legal", "/contact"];
 
 const AUDIT = `
 (() => {

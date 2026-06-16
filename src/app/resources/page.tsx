@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Photo } from "@/components/Photo";
+import { PetFamilyMosaic } from "@/components/PetFamilyMosaic";
 import { ResourceDirectory } from "@/components/ResourceDirectory";
 import { ResourceCategory } from "@/data/resources";
 
@@ -44,7 +44,7 @@ export default async function ResourcesPage({
           </p>
         </div>
         <div className="h-52 sm:h-64 lg:h-72">
-          <Photo slug="volunteer" />
+          <PetFamilyMosaic />
         </div>
       </section>
 

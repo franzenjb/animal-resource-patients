@@ -51,7 +51,7 @@ export default function FormsPage() {
           </p>
         </div>
         <div className="h-52 sm:h-64 lg:h-72">
-          <Photo slug="hero" />
+          <Photo slug="senior" />
         </div>
       </section>
 

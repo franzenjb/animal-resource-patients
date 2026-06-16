@@ -16,10 +16,10 @@ export type Photo = {
 
 export const PHOTOS: Record<string, Photo> = {
   hero: {
-    alt: "A person holding their dog close, warm and reassured",
+    alt: "A patient smiling with a therapy dog",
     tone: "peach",
     glyph: "🐕",
-    src: "/img/patient-dog-hospital.jpg",
+    src: "/img/patient-dog-joy.jpg",
   },
   comfort: {
     alt: "A dog giving its paw to a person at home",
@@ -34,14 +34,16 @@ export const PHOTOS: Record<string, Photo> = {
     src: "/img/dog-window.jpg",
   },
   cat: {
-    alt: "Someone cuddling a cat at home",
+    alt: "An orange cat resting at home",
     tone: "sage",
     glyph: "🐈",
+    src: "/img/cat-home.jpg",
   },
   senior: {
-    alt: "An older person with their beloved pet",
+    alt: "A patient resting with a dog nearby",
     tone: "peach",
     glyph: "💛",
+    src: "/img/patient-dog-bed.jpg",
   },
   horse: {
     alt: "A horse being cared for by a person",
@@ -62,9 +64,10 @@ export const PHOTOS: Record<string, Photo> = {
     src: "/img/rescue-dog-leash.jpg",
   },
   reunion: {
-    alt: "A joyful reunion between a person and their pet",
+    alt: "A patient smiling with a therapy dog",
     tone: "accent",
     glyph: "🏡",
+    src: "/img/patient-dog-joy.jpg",
   },
   fish: {
     alt: "A home aquarium with fish being cared for",

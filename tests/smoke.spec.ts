@@ -15,6 +15,7 @@ const PAGES = [
   { path: "/resources", heading: "Resource Directory" },
   { path: "/forms", heading: "Consent Forms" },
   { path: "/legal", heading: "Legal Reference" },
+  { path: "/contact", heading: "Help build the resource network" },
 ];
 
 for (const p of PAGES) {
@@ -39,6 +40,18 @@ test("resource directory has real Maine data", async ({ page }) => {
   await expect(page.getByText("Showing 593 resources")).toBeVisible();
 });
 
+test("aco records can be filtered by county", async ({ page }) => {
+  await page.goto("/resources");
+  await page
+    .getByRole("button", { name: "Animal Control & Contracted Shelters" })
+    .click();
+  await page.getByLabel("Filter By County").selectOption("Cumberland");
+  await expect(page.getByText("Showing 28 resources")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Portland - Animal Control Officer", exact: true }),
+  ).toBeVisible();
+});
+
 test("intake checklist tracks progress", async ({ page }) => {
   await page.goto("/intake");
   await page.waitForLoadState("networkidle");
@@ -58,4 +71,13 @@ test("form controls stay readable in dark mode", async ({ browser }) => {
   const [r, g, b] = color.match(/\d+/g)!.map(Number);
   expect(r + g + b).toBeLessThan(300);
   await ctx.close();
+});
+
+test("contact page has email handoff", async ({ page }) => {
+  await page.goto("/contact");
+  await expect(page.getByRole("link", { name: "jbf@jbf.com" })).toHaveAttribute(
+    "href",
+    "mailto:jbf@jbf.com",
+  );
+  await expect(page.getByRole("button", { name: "Email JBF" })).toBeVisible();
 });

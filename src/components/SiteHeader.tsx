@@ -32,14 +32,16 @@ export function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-1 lg:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className={`rounded-full px-3.5 py-2 text-sm font-bold transition-colors ${
+              className={`shrink-0 whitespace-nowrap rounded-full px-3 py-2 text-sm font-bold transition-colors ${
                 isActive(item.href)
                   ? "bg-accent text-on-accent"
+                  : item.featured
+                    ? "bg-sage-deep text-on-dark hover:bg-accent"
                   : "text-ink hover:bg-peach"
               }`}
             >
@@ -51,7 +53,7 @@ export function SiteHeader() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="shrink-0 rounded-full bg-peach px-4 py-2 text-sm font-bold text-ink md:hidden"
+          className="shrink-0 rounded-full bg-peach px-4 py-2 text-sm font-bold text-ink lg:hidden"
           aria-expanded={open}
           aria-label="Toggle menu"
         >
@@ -60,7 +62,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="border-t border-edge bg-cream md:hidden">
+        <nav className="border-t border-edge bg-cream lg:hidden">
           <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3 sm:px-6">
             {NAV.map((item) => (
               <Link
@@ -70,6 +72,8 @@ export function SiteHeader() {
                 className={`rounded-2xl px-3.5 py-2.5 text-sm font-bold ${
                   isActive(item.href)
                     ? "bg-accent text-on-accent"
+                    : item.featured
+                      ? "bg-sage-deep text-on-dark"
                     : "text-ink hover:bg-peach"
                 }`}
               >

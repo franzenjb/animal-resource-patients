@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CategoryGraphic } from "@/components/CategoryGraphic";
+import { PetFamilyMosaic } from "@/components/PetFamilyMosaic";
 import { Photo } from "@/components/Photo";
 import {
   CATEGORY_META,
@@ -77,6 +78,9 @@ export default function Home() {
               people and animals — is cared for, by connecting to local
               resources across Maine.
             </p>
+            <p className="mt-4 max-w-xl text-sm font-bold uppercase tracking-wide text-muted">
+              Dogs, cats, fish, birds, rabbits, turtles, and other animals
+            </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/intake"
@@ -95,7 +99,7 @@ export default function Home() {
 
           <div className="relative">
             <div className="aspect-[4/5] w-full sm:aspect-[5/4] lg:aspect-[4/5]">
-              <Photo slug="hero" className="shadow-[var(--shadow)]" />
+              <PetFamilyMosaic />
             </div>
           </div>
         </div>

@@ -9,6 +9,9 @@ from a public source or a verified partner submission.
 - Source: Maine Department of Agriculture, Conservation and Forestry, Animal
   Welfare Program, Animal Control Officers table.
 - URL: `https://www.maine.gov/dacf/ahw/animal_welfare/animal_control_officers.shtml`
+- County enrichment source: U.S. Census Maine county subdivision population
+  estimate CSV.
+- URL: `https://www2.census.gov/programs-surveys/popest/datasets/2010-2015/cities/totals/sub-est2015_23.csv`
 - Local data: `src/data/aco.json`
 - Refresh command: `node scripts/scrape-dacf-aco.mjs > src/data/aco.json`
 - Current rows: 500 town records.
@@ -16,7 +19,9 @@ from a public source or a verified partner submission.
   shelter, business phone / after-hours phone, town office phone, and
   certification status. The site labels this category "Animal Control &
   Contracted Shelters" because the current scrape is town ACO records with a
-  contracted-shelter field, not standalone shelter profiles.
+  contracted-shelter field, not standalone shelter profiles. The scraper adds
+  counties from Census subdivision rows and includes explicit overrides for DACF
+  spellings/legacy townships that do not directly match the Census names.
 
 ## Maine Pet Food Pantries
 

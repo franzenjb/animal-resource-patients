@@ -20,12 +20,15 @@ placeholder until you give it a real `src`. To drop in a real photo:
 That's it — `<Photo slug="hero" />` everywhere picks it up. No other edits.
 
 Current real images live in `public/img/` and are mapped in `src/data/photos.ts`.
-Photos are used for hero/header/story sections; resource cards use generated
-category graphics through `src/components/CategoryGraphic.tsx` so the directory
-does not repeat the same image hundreds of times.
+The homepage/resources/contact hero uses `src/components/PetFamilyMosaic.tsx`:
+six real local photos covering dogs, cats, fish, birds, rabbits, and turtles,
+including a positive patient-with-dog image. The forms page uses a patient/dog
+photo directly. Resource cards use generated category graphics through
+`src/components/CategoryGraphic.tsx` so the directory does not repeat the same
+image hundreds of times.
 
-Slugs in use: `hero`, `comfort`, `waiting`, `feeding`, `volunteer`, `horse`, and `fish`.
-Also defined for later expansion: `cat`, `senior`, `reunion`.
+Slugs in use: `hero`, `comfort`, `waiting`, `feeding`, `volunteer`, `horse`,
+`fish`, `cat`, `senior`, and `reunion`.
 
 Tone (`peach | sage | butter | accent`) only sets the placeholder gradient — harmless once a
 real `src` is set, but keep it sensible.
@@ -44,7 +47,8 @@ utility, never `text-ink`.
   Midcoast Humane public lists.
 - `src/data/aco.json` — 500 Maine DACF town Animal Control Officer records, including
   business phone, after-hours phone, ACO name, alternate ACO where present, town office,
-  certification, and contracted shelter details.
+  certification, contracted shelter details, and county enrichment for filtering
+  (including 28 Cumberland County records).
 - `src/data/resources.ts` — types + merges the above + the MSSPA large-animal entry.
 - `scripts/scrape-dacf-aco.mjs` — regenerates `aco.json` from the official DACF table.
 
@@ -52,4 +56,4 @@ Current total: 593 resources.
 See `docs/data-sources.md` for source notes.
 
 ## Run
-`npm run dev` · `npm run build` · `npx playwright test`
+`npm run dev` · `npm run build` · `npm run lint` · `CI=1 npx playwright test`
